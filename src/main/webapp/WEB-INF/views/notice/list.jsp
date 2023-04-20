@@ -50,19 +50,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${empty noticeList}">
-					<tr>
-						<td colspan="2">안녕</td>
-					</tr>
-				</c:if>
-				<c:if test="${not empty noticeList}">
 					<c:forEach items="${noticeList}" var="notice">
 						<tr>
 							<td>${notice.notice_no}</td>
 							<td><a href="${contextPath}/notice/detail.do?notice_no=${notice.notice_no}">${notice.title}</a></td>
 						</tr>
 					</c:forEach>
-				</c:if>
 			</tbody>
 		</table>
 	</div>

@@ -22,7 +22,7 @@ public class NoticeDAO {
 	// GDJ61 계정에 접속할 수 있는 Connection 객체를 반환하시오. 예외 처리(try - catch) 없이 진행하시오.
 	private Connection getConnection() throws Exception {
 		Class.forName("oracle.jdbc.OracleDriver");
-		return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "GDJ61", "1111");
+		return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "GDJ61", "1234");
 	}
 	
 	// DB 처리 시 사용한 Connection, PreparedStatement, Result 객체를 close 처리하시오.
@@ -41,7 +41,7 @@ public class NoticeDAO {
 		List<NoticeDTO> list = new ArrayList<NoticeDTO>();
 		try {
 			con = getConnection();
-			sql = "SELECT NOTICE_NO, GUBUN, TITLE, CONTENT FROM NOTICE ORDER BY BOARD_NO DESC";
+			sql = "SELECT NOTICE_NO, GUBUN, TITLE, CONTENT FROM NOTICE ORDER BY NOTICE_NO DESC";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -105,6 +105,7 @@ public class NoticeDAO {
 			ps.setInt(1, notice.getGubun());
 			ps.setString(2, notice.getTitle());
 			ps.setString(3, notice.getContent());
+			ps.setInt(4, notice.getNotice_no());
 			result = ps.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -46,9 +46,19 @@
 
 	<div id="detail_screen">
 		<h1>${notice.notice_no}번 공지사항</h1>
-		<div>구분 : ${notice.gubun}</div>
+		<div>
+		구분 : 
+		<c:if test="${notice.gubun == 1}">
+			긴급
+		</c:if>
+		<c:if test="${notice.gubun == 2}">
+			일반
+		</c:if>
+		
+		
+		</div>
 		<div>제목 : ${notice.title}</div>
-		<div>${b.content}</div>
+		<div>${notice.content}</div>
 		<hr>
 		<div>
 			<input type="button" value="편집" onclick="fnEdit()">
@@ -64,8 +74,8 @@
 			<div>
 				<label for="gubun">구분</label>
 				<select name="gubun">
-					<option>긴급</option>
-					<option>일반</option>
+					<option value="1">긴급</option>
+					<option value="2">일반</option>
 				</select>
 			</div>
 			<div>
@@ -77,6 +87,7 @@
 				<textarea id="content" name="content">${notice.content}</textarea>
 			</div>
 			<hr>
+			<input type="hidden" value="${notice.notice_no}" name="notice_no">
 			<button>편집완료</button>
 			<input type="button" value="목록" onclick="fnList()">
 		</form>

@@ -21,9 +21,9 @@
 		<form method="post" action="${contextPath}/notice/add.do">
 			<div>
 				<label for="gubun">구분</label>
-				<select name="gubun">
-					<option>긴급</option>
-					<option>일반</option>
+				<select id="gubun" name="gubun">
+					<option value="1">긴급</option>
+					<option value="2">일반</option>
 				</select>
 			</div>
 			<div>
